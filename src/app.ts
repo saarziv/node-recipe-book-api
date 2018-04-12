@@ -1,16 +1,17 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import shoppingListRouter from './shopping-list/shopping-list.route'
+import authRouter from './auth/auth.route';
 
 class App {
 
     //express.application is the return type from express() function call.
     public express: express.Application;
     constructor() {
+
         this.express = express();
         this.middleware();
         this.routes();
-
     }
 
     private middleware(): void {
@@ -24,6 +25,7 @@ class App {
 
     private routes(): void {
         this.express.use("/shoppingList",shoppingListRouter);
+        this.express.use("/auth",authRouter);
     }
 }
 
